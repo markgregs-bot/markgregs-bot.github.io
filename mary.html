@@ -192,27 +192,27 @@
 
   <script>
 
-    function createPetal() {
-      const petal = document.createElement('div');
-      petal.className = 'petal';
-      petal.style.left = Math.random() * window.innerWidth + 'px';
-      petal.style.top = -20 + 'px';
-      petal.style.animationDuration = (6 + Math.random() * 6) + 's';
-      document.body.appendChild(petal);
-      setTimeout(() => petal.remove(), 10000);
-    }
-    setInterval(createPetal, 500);
+ 
+function createPetal() {
+  const petal = document.createElement('div');
+  petal.className = 'petal';
+  petal.style.left = Math.random() * window.innerWidth + 'px';
+  petal.style.top = '-20px';
+  document.body.appendChild(petal);
+  setTimeout(() => petal.remove(), 8000);
+}
+setInterval(createPetal, 600);
 
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.top = window.innerHeight + 'px';
-      heart.style.animationDuration = (5 + Math.random() * 5) + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 8000);
-    }
-    setInterval(createHeart, 700);
+
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.style.left = Math.random() * window.innerWidth + 'px';
+  heart.style.top = window.innerHeight + 'px';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 10000);
+}
+setInterval(createHeart, 1200);
   </script>
 </body>
 </html>
