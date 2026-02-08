@@ -23,7 +23,7 @@
       justify-content: center;
       gap: 30px;
       max-width: 900px;
-      margin: 0 auto 220px auto;
+      margin: 0 auto;
       padding: 20px;
       border-radius: 20px;
     }
@@ -36,6 +36,7 @@
       text-align: center;
       width: 250px;
       transition: transform 0.6s ease;
+      cursor: pointer;
     }
 
     .photo-card:hover {
@@ -54,7 +55,29 @@
       color: #333;
     }
 
-  
+    /* Preview box below gallery */
+    .preview-box {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 16px;
+      color: #e63946;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 12px 20px;
+      border-radius: 12px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      transition: opacity 0.3s;
+    }
+
+    .preview-box img {
+      width: 220px; /* bigger thumbnail */
+      border-radius: 12px;
+      margin-top: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Footer tulip garden */
     footer {
       position: fixed;
       bottom: 0;
@@ -72,18 +95,18 @@
       position: relative;
       width: 20px;
       height: 120px;
-      background: green; 
+      background: green; /* stem */
       border-radius: 5px;
     }
 
     .tulip .flower {
       position: absolute;
-      bottom: 100%; 
+      bottom: 100%;
       left: -20px;
       width: 60px;
       height: 60px;
       background: deeppink;
-      border-radius: 0 0 50% 50%; 
+      border-radius: 0 0 50% 50%;
       box-shadow: 0 0 10px rgba(255,182,193,0.8);
     }
 
@@ -108,76 +131,73 @@
       left: 0;
     }
 
-    
-   /* Falling petals */
-.petal {
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  background: pink;
-  border-radius: 50%;
-  opacity: 0.8;
-  animation: fall 8s linear forwards;
-}
+    /* Falling petals */
+    .petal {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: pink;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: fall 8s linear forwards;
+    }
 
-@keyframes fall {
-  0% { transform: translateY(0) translateX(0); opacity: 1; }
-  100% { transform: translateY(100vh) translateX(30px); opacity: 0; }
-}
+    @keyframes fall {
+      0% { transform: translateY(0) translateX(0); opacity: 1; }
+      100% { transform: translateY(100vh) translateX(30px); opacity: 0; }
+    }
 
-/* Floating hearts */
-.heart {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: red;
-  transform: rotate(-45deg);
-  animation: floatUp 10s ease-in forwards;
-}
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(-45deg);
+      animation: floatUp 10s ease-in forwards;
+    }
 
-.heart::before,
-.heart::after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: red;
-  border-radius: 50%;
-}
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
 
-.heart::before { top: -10px; left: 0; }
-.heart::after { left: 10px; top: 0; }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: 10px; top: 0; }
 
-@keyframes floatUp {
-  0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
-  100% { transform: translateY(-100vh) rotate(-45deg); opacity: 0; }
-}
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(-45deg); opacity: 0; }
+    }
   </style>
 </head>
 <body>
   <h1>Happy Valentine’s Day 💌</h1>
   <div class="gallery">
-    <div class="photo-card">
+    <div class="photo-card" data-text="💖 Our first memory together!">
       <img src="photo1.jpg" alt="Photo 1">
       <p>Our first memory together 💖</p>
     </div>
-    <div class="photo-card">
+    <div class="photo-card" data-text="🌸 Laughs and smiles forever!">
       <img src="photo2.jpg" alt="Photo 2">
       <p>Laughs and smiles 🌸</p>
     </div>
-    <div class="photo-card">
+    <div class="photo-card" data-text="💕 Looking forward to February 14!">
       <img src="photo3.jpg" alt="Photo 3">
       <p>Looking forward to February 14 💕</p>
     </div>
   </div>
 
+  <!-- Preview box -->
+  <div id="previewBox" class="preview-box">Hover a card to preview the photo…</div>
+
+  <!-- Footer tulip garden -->
   <footer>
-   
-    <div class="tulip"><div class="flower"></div></div>
-    <div class="tulip"><div class="flower"></div></div>
-    <div class="tulip"><div class="flower"></div></div>
-    <div class="tulip"><div class="flower"></div></div>
-    <div class="tulip"><div class="flower"></div></div>
     <div class="tulip"><div class="flower"></div></div>
     <div class="tulip"><div class="flower"></div></div>
     <div class="tulip"><div class="flower"></div></div>
@@ -191,28 +211,49 @@
   </footer>
 
   <script>
+    // Hover preview logic
+    const cards = document.querySelectorAll('.photo-card');
+    const previewBox = document.getElementById('previewBox');
 
- 
-function createPetal() {
-  const petal = document.createElement('div');
-  petal.className = 'petal';
-  petal.style.left = Math.random() * window.innerWidth + 'px';
-  petal.style.top = '-20px';
-  document.body.appendChild(petal);
-  setTimeout(() => petal.remove(), 8000);
-}
-setInterval(createPetal, 600);
+    cards.forEach(card => {
+      const imgSrc = card.querySelector("img").src;
+      const text = card.getAttribute("data-text"); // custom text
 
+      card.addEventListener('mouseenter', () => {
+        previewBox.innerHTML = `
+          <div>${text}</div>
+          <img src="${imgSrc}">
+        `;
+      });
 
-function createHeart() {
-  const heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.style.left = Math.random() * window.innerWidth + 'px';
-  heart.style.top = window.innerHeight + 'px';
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 10000);
-}
-setInterval(createHeart, 1200);
+      card.addEventListener('mouseleave', () => {
+        previewBox.innerHTML = "Hover a card to preview the photo…";
+      });
+    });
+
+    // Falling petals
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.className = 'petal';
+      petal.style.left = Math.random() * window.innerWidth + 'px';
+      petal.style.top = '-20px';
+      petal.style.animationDuration = (6 + Math.random() * 4) + 's';
+      document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), 10000);
+    }
+    setInterval(createPetal, 600);
+
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.top = window.innerHeight + 'px';
+      heart.style.animationDuration = (6 + Math.random() * 4) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 1200);
   </script>
 </body>
-</html>
+</html> 
