@@ -51,13 +51,31 @@ h1 {
 }
 
 .preview-box {
-  margin: 30px auto;
+  margin: 20px auto;
   text-align: center;
   color: #e63946;
   background: rgba(255,255,255,0.6);
   padding: 12px;
   border-radius: 12px;
   max-width: 400px;
+  transition: opacity 0.8s;
+  opacity: 1;
+}
+
+#letterBox {
+  display: none;
+  margin: 20px auto;
+  padding: 25px;
+  max-width: 700px;
+  width: 90%;
+  background: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  color: #e63946;
+  line-height: 1.6;
+  font-size: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  overflow-y: auto;
+  max-height: 400px;
 }
 
 footer {
@@ -71,157 +89,44 @@ footer {
   gap: 22px;
 }
 
-
-.tulip {
-  position: relative;
-  width: 20px;
-  height: 120px;
-  background: green;
-  border-radius: 5px;
-}
-
-
-@keyframes flowerIntro {
-  0% { transform: scale(0.6); opacity: 0; box-shadow: none; }
-  60% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 35px hotpink; }
-  100% { transform: scale(1); box-shadow: 0 0 10px pink; }
-}
-
-.tulip .flower {
-  position: absolute;
-  bottom: 100%;
-  left: -20px;
-  width: 60px;
-  height: 60px;
-  background: deeppink;
-  border-radius: 0 0 50% 50%;
-  animation: flowerIntro 1.8s ease forwards;
-}
-
-.tulip .flower::before,
-.tulip .flower::after {
-  content: '';
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  background: deeppink;
-  border-radius: 0 0 50% 50%;
-}
-
+.tulip { position: relative; width: 20px; height: 120px; background: green; border-radius: 5px; }
+@keyframes flowerIntro { 0% { transform: scale(0.6); opacity: 0; box-shadow: none; } 60% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 35px hotpink; } 100% { transform: scale(1); box-shadow: 0 0 10px pink; } }
+.tulip .flower { position: absolute; bottom: 100%; left: -20px; width: 60px; height: 60px; background: deeppink; border-radius: 0 0 50% 50%; animation: flowerIntro 1.8s ease forwards; }
+.tulip .flower::before, .tulip .flower::after { content: ''; position: absolute; width: 60px; height: 60px; background: deeppink; border-radius: 0 0 50% 50%; }
 .tulip .flower::before { transform: rotate(-20deg); }
 .tulip .flower::after { transform: rotate(20deg); }
+@keyframes leafMove { 0% { transform: rotate(0deg); } 50% { transform: rotate(8deg); } 100% { transform: rotate(0deg); } }
+.leaf { position: absolute; width: 30px; height: 15px; background: #2ecc71; border-radius: 50% 50% 50% 0; animation: leafMove 3s ease-in-out infinite; }
+.leaf.left { left: -20px; top: 50px; transform-origin: right center; }
+.leaf.right { right: -20px; top: 70px; transform-origin: left center; animation-delay: 1.5s; }
+@keyframes wingFlap { 0%,100% { transform: scaleX(1); } 50% { transform: scaleX(0.6); } }
+@keyframes butterflyFloat { 0% { transform: translate(0,0); } 25% { transform: translate(25px,-35px); } 50% { transform: translate(-25px,-55px); } 75% { transform: translate(-15px,-25px); } 100% { transform: translate(0,0); } }
+.butterfly { position: absolute; top: -60px; left: -10px; width: 34px; height: 20px; animation: butterflyFloat 6s ease-in-out infinite; pointer-events: none; }
+.butterfly .wing { position: absolute; width: 18px; height: 18px; background: radial-gradient(circle, #ffd1dc, #ff69b4); border-radius: 100% 0 100% 0; animation: wingFlap 0.6s infinite; }
+.butterfly .wing.left { left: 0; transform-origin: right center; }
+.butterfly .wing.right { right: 0; transform-origin: left center; transform: scaleX(-1); }
+.petal { position: absolute; width: 15px; height: 15px; background: pink; border-radius: 50%; opacity: 0.8; animation: fall 8s linear forwards; }
+@keyframes fall { 0% { top: -20px; opacity: 1; } 100% { top: 100vh; opacity: 0; } }
+.heart { position: absolute; width: 20px; height: 20px; background: red; transform: rotate(-45deg); animation: fall 10s linear forwards; }
+.heart::before, .heart::after { content: ''; position: absolute; width: 20px; height: 20px; background: red; border-radius: 50%; }
+.heart::before { top: -10px; } .heart::after { left: 10px; }
+.fade-in { opacity: 0; animation: fadeIn 1s forwards; }
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
 
-
-@keyframes leafMove {
-  0% { transform: rotate(0deg); }
-  50% { transform: rotate(8deg); }
-  100% { transform: rotate(0deg); }
+#mailBtn {
+  display: inline-block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  background: #e63946;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
+#mailBtn:hover { transform: scale(1.1); }
 
-.leaf {
-  position: absolute;
-  width: 30px;
-  height: 15px;
-  background: #2ecc71;
-  border-radius: 50% 50% 50% 0;
-  animation: leafMove 3s ease-in-out infinite;
-}
-
-.leaf.left {
-  left: -20px;
-  top: 50px;
-  transform-origin: right center;
-}
-
-.leaf.right {
-  right: -20px;
-  top: 70px;
-  transform-origin: left center;
-  animation-delay: 1.5s;
-}
-
-
-@keyframes wingFlap {
-  0%,100% { transform: scaleX(1); }
-  50% { transform: scaleX(0.6); }
-}
-
-@keyframes butterflyFloat {
-  0% { transform: translate(0,0); }
-  25% { transform: translate(25px,-35px); }
-  50% { transform: translate(-25px,-55px); }
-  75% { transform: translate(-15px,-25px); }
-  100% { transform: translate(0,0); }
-}
-
-.butterfly {
-  position: absolute;
-  top: -60px;
-  left: -10px;
-  width: 34px;
-  height: 20px;
-  animation: butterflyFloat 6s ease-in-out infinite;
-  pointer-events: none;
-}
-
-.butterfly .wing {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  background: radial-gradient(circle, #ffd1dc, #ff69b4);
-  border-radius: 100% 0 100% 0;
-  animation: wingFlap 0.6s infinite;
-}
-
-.butterfly .wing.left {
-  left: 0;
-  transform-origin: right center;
-}
-
-.butterfly .wing.right {
-  right: 0;
-  transform-origin: left center;
-  transform: scaleX(-1);
-}
-
-
-.petal {
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  background: pink;
-  border-radius: 50%;
-  opacity: 0.8;
-  animation: fall 8s linear forwards;
-}
-
-@keyframes fall {
-  0% { top: -20px; opacity: 1; }
-  100% { top: 100vh; opacity: 0; }
-}
-
-
-.heart {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: red;
-  transform: rotate(-45deg);
-  animation: fall 10s linear forwards;
-}
-
-.heart::before,
-.heart::after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: red;
-  border-radius: 50%;
-}
-
-.heart::before { top: -10px; }
-.heart::after { left: 10px; }
 </style>
 </head>
 
@@ -230,7 +135,7 @@ footer {
 <h1>Happy Valentine’s Day 💌</h1>
 
 <div class="gallery">
-  <div class="photo-card" data-photo="miri1.jpg" data-text="💖 until My last breath">
+  <div class="photo-card" data-photo="miri1.jpg" data-text="💖 My last breath">
     <img src="miri2.jpg">
     <p>I Love you my lovee 💖</p>
   </div>
@@ -238,18 +143,24 @@ footer {
     <img src="miri5.jpg">
     <p>You and Me 🌸</p>
   </div>
-  <div class="photo-card" data-photo="miri4.jpg" data-text="💕i hope that you still happy with me :c">
+  <div class="photo-card" data-photo="miri4.jpg" data-text="💕 Feb 14 with you">
     <img src="miri7.jpg">
-    <p> You are the only exception💕</p>
+    <p>Still happy with me 💕</p>
   </div>
 </div>
 
-<div id="previewBox" class="preview-box">
-Yan ha pumayag ka maging valentines date ko uli sa 14 hihi💕
+<div style="text-align:center;">
+  <p>click the letter button my lovee or else😠😠😠</p>
+  <button id="mailBtn">💌</button>
 </div>
 
+<div id="previewBox" class="preview-box">
+Yan ha pumayag ka maging valentine's date ko uli sa 14 hihi💕
+</div>
+
+<div id="letterBox"></div>
+
 <footer>
-  
   <div class="tulip"><div class="flower"></div><div class="leaf left"></div><div class="leaf right"></div><div class="butterfly"><div class="wing left"></div><div class="wing right"></div></div></div>
   <div class="tulip"><div class="flower"></div><div class="leaf left"></div><div class="leaf right"></div></div>
 
@@ -269,13 +180,16 @@ Yan ha pumayag ka maging valentines date ko uli sa 14 hihi💕
 <script>
 const cards = document.querySelectorAll('.photo-card');
 const previewBox = document.getElementById('previewBox');
+const letterBox = document.getElementById('letterBox');
 
 cards.forEach(card => {
   card.addEventListener('mouseenter', () => {
     previewBox.innerHTML = `<div>${card.dataset.text}</div><img src="${card.dataset.photo}" width="200">`;
+    previewBox.classList.add('fade-in');
   });
   card.addEventListener('mouseleave', () => {
     previewBox.innerHTML = "Yan ha pumayag ka maging valentines date ko uli sa 14 hihi💕";
+    previewBox.classList.remove('fade-in');
   });
 });
 
@@ -296,6 +210,32 @@ function createHeart() {
   setTimeout(() => h.remove(), 10000);
 }
 setInterval(createHeart, 1200);
+
+const mailBtn = document.getElementById('mailBtn');
+mailBtn.addEventListener('click', () => {
+  letterBox.style.display = 'block';
+  letterBox.innerHTML = `
+    <h2>💌 My Valentine Letter for you Ganda 💖</h2>
+    <p>Hi loveee 🌸<br>
+    I just wanted to tell you my loveee how much you mean to me. Sobrang mahal na mahal kita my loveee i hope that your happy for this valentine proposal ko sayo hihi
+    tandaan mo palagi loveee kahit ilayo mo saakin loob mo ipagdamot mo saakin ang pagmamahal mo saakin. still I will alway choose you like how i court you in the first day
+    and i will prove for you na hindi lang ako puro salita tutuparin ko pa din yung pangako ko sayo kahit na ipakita mo saakin at iparamdam ang masasakit even you'd see me jealous
+    but still you continue pa din but cguro hindi ito yung time para sumuko ako at mag patinag dahil kung utak ang pinaandar ko alam ko wala na ako sa tabi mo dahil i was hurt a lot
+    but i choose my heart kasi i know there were times na pag natapos rin kayo alam ko babalik ka rin saakin alam ko magiging okay tayo uli at mag kakaayos and i know we dont have
+    a proper na pag aayos pero loveee kahit ano gawin mo mahal pa din kita higit pa sa sarili ko pero dont mind me just your doing na wala ka na pakialam saakin just do what ever
+    you want your man still love you even there's no spark of us I still love you the way how I love you in the first place. sorry if nagkulang ako sayo sorry if i hurt you a lot
+    I didnt mean to hurt you but i just want to be a perfect man for you I just want lang na maramdaman mo na kamahal mahal ka at dika nag iisa may kasama ka loveee at andito ako
+    you owned me and my heart treasure you kaya if may need ka saakin wag ka mahiya mag sabi loveee at wag ikaw mahiya bumalik saakin dahil mahal pa din kita nag kulang ako kaya
+    cguro mo yon nagawa at alam ko yon. you dont need mag regret or I'm not saying this para saktan ka or saktan ka uli parang sinisisi kita ganon im not saying that dahil first
+    of all ako yung lalaki dito ako yung mag sosorry ako yung gagawa ng paraan para mag ayos tayo at mahalin mo uli ako at magtiwala at maging comfortable saakin. hindi man ako perpekto
+    pero loveee ginagawa ko ang best ko for you at maramdaman mo at maalala mo na meron isang tao na mahal ka kahit nasa taas o baba ka man ng buhay mo you have your baby boy right here my loveee
+    by the way remind ko lang loveee never ka nag kulang saakin at never akong nag sisi kung bakit ikaw napili kong ligawan at mahalin yon lang loveee I love you so much from deep
+    of my heart mwaaaaaaaaaa	 💕<br><br><br><br><br>
+    Love always,<br>-Your baby pogiii 💌
+    </p>
+  `;
+  letterBox.classList.add('fade-in');
+});
 </script>
 
 </body>
