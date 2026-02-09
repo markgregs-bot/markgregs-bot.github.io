@@ -1,251 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Our Valentine 💕</title>
-  <style>
-    body {
-      margin: 0;
-      background: radial-gradient(circle at top left, #ffdde1, #ee9ca7);
-      font-family: 'Segoe UI', sans-serif;
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8">
+<title>Our Valentine 💕</title>
 
-    h1 {
-      text-align: center;
-      color: #e63946;
-      margin: 30px 0;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-    }
+<style>
+body {
+  margin: 0;
+  background: radial-gradient(circle at top left, #ffdde1, #ee9ca7);
+  font-family: 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+}
 
-    .gallery {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-      border-radius: 20px;
-    }
+h1 {
+  text-align: center;
+  color: #e63946;
+  margin: 30px 0;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
 
-    .photo-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      overflow: hidden;
-      text-align: center;
-      width: 250px;
-      transition: transform 0.6s ease;
-      cursor: pointer;
-    }
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-    .photo-card:hover {
-      transform: scale(1.05);
-    }
+.photo-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  width: 250px;
+  cursor: pointer;
+  transition: transform 0.6s;
+}
 
-    .photo-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
+.photo-card:hover { transform: scale(1.05); }
 
-    .photo-card p {
-      padding: 10px;
-      font-size: 16px;
-      color: #333;
-    }
+.photo-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
 
-  
-    .preview-box {
-      margin-top: 30px;
-      text-align: center;
-      font-size: 16px;
-      color: #e63946;
-      background: rgba(255, 255, 255, 0.6);
-      padding: 12px 20px;
-      border-radius: 12px;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-      transition: opacity 0.3s;
-    }
+.photo-card p {
+  padding: 10px;
+  text-align: center;
+}
 
-    .preview-box img {
-      width: 220px; 
-      border-radius: 12px;
-      margin-top: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
+.preview-box {
+  margin: 30px auto;
+  text-align: center;
+  color: #e63946;
+  background: rgba(255,255,255,0.6);
+  padding: 12px;
+  border-radius: 12px;
+  max-width: 400px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 22px;
+}
 
 
-    footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      height: 220px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: flex-end;
-      gap: 20px;
-      padding: 10px;
-    }
+.tulip {
+  position: relative;
+  width: 20px;
+  height: 120px;
+  background: green;
+  border-radius: 5px;
+}
 
-    .tulip {
-      position: relative;
-      width: 20px;
-      height: 120px;
-      background: green;
-      border-radius: 5px;
-    }
 
-    .tulip .flower {
-      position: absolute;
-      bottom: 100%;
-      left: -20px;
-      width: 60px;
-      height: 60px;
-      background: deeppink;
-      border-radius: 0 0 50% 50%;
-      box-shadow: 0 0 10px rgba(255,182,193,0.8);
-    }
+@keyframes flowerIntro {
+  0% { transform: scale(0.6); opacity: 0; box-shadow: none; }
+  60% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 35px hotpink; }
+  100% { transform: scale(1); box-shadow: 0 0 10px pink; }
+}
 
-    .tulip .flower::before,
-    .tulip .flower::after {
-      content: '';
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      background: deeppink;
-      border-radius: 0 0 50% 50%;
-      box-shadow: 0 0 10px rgba(255,182,193,0.8);
-    }
+.tulip .flower {
+  position: absolute;
+  bottom: 100%;
+  left: -20px;
+  width: 60px;
+  height: 60px;
+  background: deeppink;
+  border-radius: 0 0 50% 50%;
+  animation: flowerIntro 1.8s ease forwards;
+}
 
-    .tulip .flower::before { transform: rotate(-20deg); left: 0; }
-    .tulip .flower::after { transform: rotate(20deg); left: 0; }
+.tulip .flower::before,
+.tulip .flower::after {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: deeppink;
+  border-radius: 0 0 50% 50%;
+}
 
-    
-    .petal {
-      position: absolute;
-      width: 15px;
-      height: 15px;
-      background: pink;
-      border-radius: 50%;
-      opacity: 0.8;
-      animation: fall 8s linear forwards;
-    }
+.tulip .flower::before { transform: rotate(-20deg); }
+.tulip .flower::after { transform: rotate(20deg); }
 
-    @keyframes fall {
-      0% { top: -20px; opacity: 1; }
-      100% { top: 100vh; opacity: 0; }
-    }
 
- 
-    .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      transform: rotate(-45deg);
-      animation: heartFall 10s linear forwards;
-    }
+@keyframes leafMove {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(8deg); }
+  100% { transform: rotate(0deg); }
+}
 
-    .heart::before,
-    .heart::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      border-radius: 50%;
-    }
+.leaf {
+  position: absolute;
+  width: 30px;
+  height: 15px;
+  background: #2ecc71;
+  border-radius: 50% 50% 50% 0;
+  animation: leafMove 3s ease-in-out infinite;
+}
 
-    .heart::before { top: -10px; left: 0; }
-    .heart::after { left: 10px; top: 0; }
+.leaf.left {
+  left: -20px;
+  top: 50px;
+  transform-origin: right center;
+}
 
-    @keyframes heartFall {
-      0% { top: -20px; opacity: 1; }
-      100% { top: 100vh; opacity: 0; }
-    }
-  </style>
+.leaf.right {
+  right: -20px;
+  top: 70px;
+  transform-origin: left center;
+  animation-delay: 1.5s;
+}
+
+
+@keyframes wingFlap {
+  0%,100% { transform: scaleX(1); }
+  50% { transform: scaleX(0.6); }
+}
+
+@keyframes butterflyFloat {
+  0% { transform: translate(0,0); }
+  25% { transform: translate(25px,-35px); }
+  50% { transform: translate(-25px,-55px); }
+  75% { transform: translate(-15px,-25px); }
+  100% { transform: translate(0,0); }
+}
+
+.butterfly {
+  position: absolute;
+  top: -60px;
+  left: -10px;
+  width: 34px;
+  height: 20px;
+  animation: butterflyFloat 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.butterfly .wing {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: radial-gradient(circle, #ffd1dc, #ff69b4);
+  border-radius: 100% 0 100% 0;
+  animation: wingFlap 0.6s infinite;
+}
+
+.butterfly .wing.left {
+  left: 0;
+  transform-origin: right center;
+}
+
+.butterfly .wing.right {
+  right: 0;
+  transform-origin: left center;
+  transform: scaleX(-1);
+}
+
+
+.petal {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: pink;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: fall 8s linear forwards;
+}
+
+@keyframes fall {
+  0% { top: -20px; opacity: 1; }
+  100% { top: 100vh; opacity: 0; }
+}
+
+
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  transform: rotate(-45deg);
+  animation: fall 10s linear forwards;
+}
+
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
+}
+
+.heart::before { top: -10px; }
+.heart::after { left: 10px; }
+</style>
 </head>
+
 <body>
-  <h1>Happy Valentine’s Day 💌</h1>
-  <div class="gallery">
 
-    <div class="photo-card" data-photo="miri1.jpg" data-text="💖My last breath">
-      <img src="miri2.jpg" alt="Photo 1">
-      <p>I Love you my lovee until💖</p>
-    </div>
-    <div class="photo-card" data-photo="miri.jpg" data-text="🌸 Always Forever!!!">
-      <img src="miri5.jpg" alt="Photo 2">
-      <p>You and Me🌸</p>
-    </div>
-    <div class="photo-card" data-photo="miri4.jpg" data-text=" i hope your still happy having me in your life :c">
-      <img src="miri7.jpg" alt="Photo 3">
-      <p>See youu my loveee in February 14th! hehehe💕</p>
-    </div>
+<h1>Happy Valentine’s Day 💌</h1>
+
+<div class="gallery">
+  <div class="photo-card" data-photo="miri1.jpg" data-text="💖 until My last breath">
+    <img src="miri2.jpg">
+    <p>I Love you my lovee 💖</p>
   </div>
+  <div class="photo-card" data-photo="miri.jpg" data-text="🌸 Always Forever">
+    <img src="miri5.jpg">
+    <p>You and Me 🌸</p>
+  </div>
+  <div class="photo-card" data-photo="miri4.jpg" data-text="💕i hope that you still happy with me :c">
+    <img src="miri7.jpg">
+    <p> You are the only exception💕</p>
+  </div>
+</div>
 
-  <div id="previewBox" class="preview-box">Yan ha pumayag kana loveee maging valentines date ko uli sa 14 hihi💕 </div>
+<div id="previewBox" class="preview-box">
+Yan ha pumayag ka maging valentines date ko uli sa 14 hihi💕
+</div>
 
-  <footer>
-    <div class="tulip"><div class="flower"></div></div>
-    <div class="tulip"><div class="flower"></div></div>
-    <div class="tulip"><div class="flower"></div></div>
-    <div class="tulip"><div class="flower"></div></div>
-    <div class="tulip"><div class="flower"></div></div>
-    <div class="tulip"><div class="flower"></div></div>
-    <div class="tulip"><div class="flower"></div></div>
-    <div class="tulip"><div class="flower"></div></div>
-    <div class="tulip"><div class="flower"></div></div>
-    <div class="tulip"><div class="flower"></div></div>
-  </footer>
-
-  <script>
-
-    const cards = document.querySelectorAll('.photo-card');
-    const previewBox = document.getElementById('previewBox');
-
-    cards.forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        const imgSrc = card.getAttribute("data-photo");
-        const text = card.getAttribute("data-text"); 
-
-        previewBox.innerHTML = `
-          <div>${text}</div>
-          <img src="${imgSrc}">
-        `;
-      });
-
-      card.addEventListener('mouseleave', () => {
-        previewBox.innerHTML = " Yan ha pumayag ka maging valentines date ko uli sa 14 hihi💕 ";
-      });
-    });
-
+<footer>
   
-    function createPetal() {
-      const petal = document.createElement('div');
-      petal.className = 'petal';
-      petal.style.left = Math.random() * window.innerWidth + 'px';
-      petal.style.top = '-20px';
-      petal.style.animationDuration = (6 + Math.random() * 4) + 's';
-      document.body.appendChild(petal);
-      setTimeout(() => petal.remove(), 10000);
-    }
-    setInterval(createPetal, 600);
+  <div class="tulip"><div class="flower"></div><div class="leaf left"></div><div class="leaf right"></div><div class="butterfly"><div class="wing left"></div><div class="wing right"></div></div></div>
+  <div class="tulip"><div class="flower"></div><div class="leaf left"></div><div class="leaf right"></div></div>
 
- 
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.top = '-20px';
-      heart.style.animationDuration = (6 + Math.random() * 4) + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 10000);
-    }
-    setInterval(createHeart, 1200);
-  </script>
+  <div class="tulip"><div class="flower"></div><div class="leaf left"></div><div class="leaf right"></div><div class="butterfly"><div class="wing left"></div><div class="wing right"></div></div></div>
+  <div class="tulip"><div class="flower"></div><div class="leaf left"></div><div class="leaf right"></div></div>
+
+  <div class="tulip"><div class="flower"></div><div class="leaf left"></div><div class="leaf right"></div><div class="butterfly"><div class="wing left"></div><div class="wing right"></div></div></div>
+  <div class="tulip"><div class="flower"></div><div class="leaf left"></div><div class="leaf right"></div></div>
+
+  <div class="tulip"><div class="flower"></div><div class="leaf left"></div><div class="leaf right"></div><div class="butterfly"><div class="wing left"></div><div class="wing right"></div></div></div>
+  <div class="tulip"><div class="flower"></div><div class="leaf left"></div><div class="leaf right"></div></div>
+
+  <div class="tulip"><div class="flower"></div><div class="leaf left"></div><div class="leaf right"></div><div class="butterfly"><div class="wing left"></div><div class="wing right"></div></div></div>
+  <div class="tulip"><div class="flower"></div><div class="leaf left"></div><div class="leaf right"></div></div>
+</footer>
+
+<script>
+const cards = document.querySelectorAll('.photo-card');
+const previewBox = document.getElementById('previewBox');
+
+cards.forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    previewBox.innerHTML = `<div>${card.dataset.text}</div><img src="${card.dataset.photo}" width="200">`;
+  });
+  card.addEventListener('mouseleave', () => {
+    previewBox.innerHTML = "Yan ha pumayag ka maging valentines date ko uli sa 14 hihi💕";
+  });
+});
+
+function createPetal() {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  p.style.left = Math.random() * window.innerWidth + 'px';
+  document.body.appendChild(p);
+  setTimeout(() => p.remove(), 9000);
+}
+setInterval(createPetal, 700);
+
+function createHeart() {
+  const h = document.createElement('div');
+  h.className = 'heart';
+  h.style.left = Math.random() * window.innerWidth + 'px';
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 10000);
+}
+setInterval(createHeart, 1200);
+</script>
+
 </body>
 </html>
